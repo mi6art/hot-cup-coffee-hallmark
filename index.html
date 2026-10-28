@@ -11,11 +11,12 @@
   <meta property="og:image" content="https://mi6art.github.io/hot-cup-coffee-hallmark/assets/coffee.webp">
   <link rel="icon" href="assets/logo.webp" type="image/webp">
   <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=scroll-1">
 </head>
 <body>
   <a class="skip" href="#main">К содержимому</a>
   <header class="site-header">
+    <div class="reading-progress" aria-hidden="true"></div>
     <div class="container nav-wrap">
       <a class="brand" href="#main" aria-label="Hot Cup Coffee: главная"><img src="assets/logo.webp" alt="" width="54" height="54"><span>Hot Cup<br>Coffee</span></a>
       <nav aria-label="Основная навигация"><a href="#menu">Что попробовать</a><a href="#place">Атмосфера</a><a href="#visit">Как добраться</a></nav>
@@ -32,6 +33,25 @@
           <div class="hero-location"><span>Луховицы, Жуковского, 27</span><span id="today-hours">Будни с 09:00 до 20:00, выходные с 10:00 до 20:00</span></div>
         </div>
         <figure class="hero-photo"><img src="assets/coffee.webp" width="720" height="1280" alt="Чашка Hot Cup Coffee в руках гостя у солнечного окна" fetchpriority="high"><figcaption>Твоя чашка. Твой момент.</figcaption></figure>
+      </div>
+    </section>
+    <section class="coffee-story" aria-label="Твой кофейный перерыв">
+      <div class="story-stage">
+        <div class="story-scenes container">
+          <article class="story-scene">
+            <div class="story-copy"><span class="story-number">01 / 03</span><h2>Сначала — <br>любимый<br><span>кофе.</span></h2><p>Тёплая чашка в руках.<br>И день уже немного лучше.</p></div>
+            <div class="story-image"><img src="assets/latte.webp" alt="Чашка кофе с молочной пенкой в руках гостя" width="960" height="1280" loading="lazy"></div>
+          </article>
+          <article class="story-scene">
+            <div class="story-copy"><span class="story-number">02 / 03</span><h2>Потом — <br>что-нибудь<br><span>сладкое.</span></h2><p>Вафли, десерт и ещё один<br>повод остаться.</p></div>
+            <div class="story-image"><img src="assets/waffles.webp" alt="Вафли с шоколадом к чашке кофе" width="960" height="1280" loading="lazy"></div>
+          </article>
+          <article class="story-scene">
+            <div class="story-copy"><span class="story-number">03 / 03</span><h2>А дальше — <br>время<br><span>для себя.</span></h2><p>У окна на Жуковского.<br>Можно просто никуда не спешить.</p></div>
+            <div class="story-image"><img src="assets/interior.webp" alt="Светлый зал Hot Cup Coffee" width="960" height="1280" loading="lazy"></div>
+          </article>
+        </div>
+        <div class="story-bottom container" aria-hidden="true"><span>Немного времени себе</span><div class="story-track"><i></i><i></i><i></i></div><span>Листай дальше ↓</span></div>
       </div>
     </section>
     <section class="menu-section section" id="menu" aria-labelledby="menu-title">
@@ -84,6 +104,6 @@
     </section>
   </main>
   <footer class="site-footer"><div class="container footer-layout"><a class="footer-brand" href="#main">Hot Cup Coffee</a><div class="footer-links"><a href="#menu">Меню</a><a href="#visit">Контакты</a><a href="https://hot-cup-coffee.clients.site/" target="_blank" rel="noopener noreferrer">Фотографии и сведения о кофейне</a></div><p>Луховицы, 2026</p></div></footer>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=scroll-1" defer></script>
 </body>
 </html>
