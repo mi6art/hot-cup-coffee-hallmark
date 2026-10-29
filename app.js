@@ -45,7 +45,9 @@ const story = document.querySelector('.coffee-story');
 const scenes = [...document.querySelectorAll('.story-scene')];
 const tracks = [...document.querySelectorAll('.story-track i')];
 const progressBar = document.querySelector('.reading-progress');
-const heroImage = document.querySelector('.hero-photo img');
+const heroImage = document.querySelector('.hero-fallback');
+const pauseBand = document.querySelector('.pause-band');
+const pauseTrack = document.querySelector('.pause-band-track');
 const galleryImages = [...document.querySelectorAll('.place-gallery img')];
 const revealTargets = [...document.querySelectorAll('.menu-intro, .menu-content, .section-heading, .place-gallery figure, .rating, .guest-quote, .visit-top, .visit-layout')];
 const clamp = (value, low = 0, high = 1) => Math.min(high, Math.max(low, value));
@@ -60,6 +62,11 @@ function renderScroll() {
   const scrollRange = root.scrollHeight - viewport;
   progressBar.style.transform = `scaleX(${scrollRange > 0 ? clamp(scrollY / scrollRange) : 0})`;
   if (reduced) return;
+  const bandBounds = pauseBand.getBoundingClientRect();
+  if (bandBounds.bottom > 0 && bandBounds.top < viewport) {
+    const travel = Math.max(0, pauseTrack.scrollWidth - innerWidth + 24);
+    pauseTrack.style.transform = `translateX(${-travel * clamp((viewport - bandBounds.top) / (viewport + bandBounds.height))}px)`;
+  }
 
   const heroBounds = heroImage.parentElement.getBoundingClientRect();
   if (heroBounds.bottom > 0 && heroBounds.top < viewport) {
@@ -88,7 +95,9 @@ function renderScroll() {
     scene.style.opacity = opacity;
     scene.querySelector('.story-copy').style.opacity = clamp((enter - .5) * 2) * clamp((leave - .5) * 2);
     scene.querySelector('.story-copy').style.transform = `translateY(${(1 - enter) * 28 - (1 - leave) * 28}px)`;
-    scene.querySelector('img').style.transform = `scale(${1.06 - clamp(position - index + .3) * .06})`;
+    scene.querySelector('img').style.transform = `scale(${1.15 - clamp(position - index + .3) * .15}) rotate(${(1 - enter) * 4}deg)`;
+    scene.querySelector('.story-image').style.clipPath = `inset(${(1 - enter) * 100}% 0 0 0)`;
+    scene.querySelector('.story-copy h2 span').style.transform = `translateX(${(1 - enter) * -40}px)`;
     tracks[index].style.transform = `scaleX(${.12 + clamp(position - index + .3) * .88})`;
     if (nextActive !== activeScene) scene.setAttribute('aria-hidden', String(index !== nextActive));
   });
@@ -110,6 +119,8 @@ function configureMotion() {
     scene.querySelector('.story-copy').style.removeProperty('transform');
     scene.querySelector('.story-copy').style.removeProperty('opacity');
     scene.querySelector('img').style.removeProperty('transform');
+    scene.querySelector('.story-image').style.removeProperty('clip-path');
+    scene.querySelector('.story-copy h2 span').style.removeProperty('transform');
   });
   [heroImage, ...galleryImages].forEach(image => image.style.removeProperty('transform'));
   revealTargets.forEach(target => target.classList.remove('reveal-pending', 'reveal-ready'));
